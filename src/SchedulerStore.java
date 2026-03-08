@@ -21,9 +21,9 @@ public class SchedulerStore {
     }
 
 
-    // =========================================================
+    // 
     //  HEALTH PROFESSIONAL CRUD
-    // =========================================================
+    // 
 
     public void addProfessional(HealthProfessional hp) {
         professionals.put(hp.getId(), hp);
@@ -43,9 +43,9 @@ public class SchedulerStore {
     }
 
 
-    // =========================================================
+    // 
     //  DIARY / APPOINTMENT OPERATIONS  (with undo support)
-    // =========================================================
+    // 
 
 
     /// Add an appointment to a professional's diary.
@@ -124,11 +124,22 @@ public class SchedulerStore {
         return !undoStack.isEmpty();
     }
 
+    private String generateNextId() {
+    if (professionals.isEmpty()) {
+        return "HP-100"; // first ever ID
+    }
+    
+    // TreeMap keeps keys sorted, so lastKey() is always the highest ID
+    String lastId = professionals.lastKey(); // e.g. "HP-342"
+    int lastNumber = Integer.parseInt(lastId.replace("HP-", "")); // 342
+    return "HP-" + (lastNumber + 1); // "HP-343"
+}
 
-    // =========================================================
+
+    // 
     //  INNER CLASS: UndoAction
     //  Stores everything needed to reverse a single operation.
-    // =========================================================
+    // 
 
     private static class UndoAction {
         enum Type { ADD, DELETE, EDIT }
