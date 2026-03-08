@@ -21,7 +21,7 @@ public class HealthProfessional {
         this.workLocation = workLocation;
     }
 
-
+    // Getters
     public String getId() {
         return id;
     }
@@ -40,6 +40,27 @@ public class HealthProfessional {
 
     public Diary getDiary() {
         return diary;
+    }
+
+    // Setters
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public void setWorkLocation(String workLocation) {
+        this.workLocation = workLocation;
+    }
+
+    public void setDiary(Diary diary) {
+        this.diary = diary;
     }
 
     public static void main(String[] args) {
